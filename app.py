@@ -38,10 +38,11 @@ def create_app():
              "expose_headers": ["Authentication-Token"]
          }})"""
 
-    CORS(app, resources={r"/api/*": {
+
+    CORS(app, resources={r"/api*": {
     "origins": [
         "http://localhost:5173",
-        "https://frontend-fraud-finder-tzle.vercel.app",
+        "https://frontend-fraud-finder.vercel.app",
         "https://*.ngrok-free.app",
         "https://*.vercel.app"
     ],
