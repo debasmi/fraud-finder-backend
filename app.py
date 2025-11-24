@@ -24,7 +24,7 @@ def create_app():
     "https://frontend-fraud-finder-tzle.vercel.app"
     ], supports_credentials=True)"""
 
-    CORS(app, 
+    """CORS(app, 
          resources={r"/api/*": {
              "origins": [
                  "http://localhost:5173",
@@ -36,7 +36,18 @@ def create_app():
              "allow_headers": ["Content-Type", "Authorization", "Authentication-Token"],
              "supports_credentials": True,
              "expose_headers": ["Authentication-Token"]
-         }})
+         }})"""
+
+    CORS(app, resources={r"/api/*": {
+    "origins": [
+        "http://localhost:5173",
+        "https://frontend-fraud-finder-tzle.vercel.app",
+        "https://*.ngrok-free.app",
+        "https://*.vercel.app"
+    ],
+    "supports_credentials": True
+}})
+
     
     db.init_app(app)
     datastore = SQLAlchemyUserDatastore(db, User, Role)
