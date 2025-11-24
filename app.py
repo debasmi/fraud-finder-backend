@@ -13,11 +13,16 @@ def create_app():
     app.config.from_object(LocalDevlopmentConfig)
     
     # Enable CORS
-    CORS(app, 
+    """CORS(app, 
          resources={r"/api/*": {"origins": "*"}},
          allow_headers=["Content-Type", "Authorization"],
          methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-         supports_credentials=True)
+         supports_credentials=True)"""
+
+    CORS(app, origins=[
+    "http://localhost:5173",
+    "https://frontend-fraud-finder-tzle.vercel.app"
+    ], supports_credentials=True)
     
     db.init_app(app)
     datastore = SQLAlchemyUserDatastore(db, User, Role)
